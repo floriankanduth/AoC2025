@@ -6,9 +6,8 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include "../inc/day1.h"
 
-#include <assert.h>
+#include <cassert>
 
 using namespace std;
 //#define DEBUG
