@@ -2,11 +2,13 @@
 file(GLOB DAY_FILES CONFIGURE_DEPENDS "day*.cpp")
 
 foreach(DAY_FILE ${DAY_FILES})
-    # Executable name (day01.cpp → day01)
+    # Executable name (day01.cpp -> day01)
     get_filename_component(EXENAME ${DAY_FILE} NAME_WE)
 
     # Create executable
-    add_executable(${EXENAME} ${DAY_FILE})
+    add_executable(${EXENAME}
+            ${DAY_FILE}
+            common.cpp)
 
     # Include project headers
     target_include_directories(${EXENAME} PRIVATE ${CMAKE_SOURCE_DIR}/inc)

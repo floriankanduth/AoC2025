@@ -8,15 +8,10 @@
 #include <regex>
 #include <string>
 #include <vector>
+#include "common.h"
 
 using namespace std;
-#define DEBUG
 
-#ifdef DEBUG
-#define DEBUG_PRINT(...) printf(__VA_ARGS__)
-#else
-#define DEBUG_PRINT(...)
-#endif
 /**
  * Specifies search ranges from-to (incl.)
  */
@@ -39,19 +34,19 @@ public:
 
 /**
  * Instantiate Ranges from puzzle input.
- * @param fileName input file
+ * @param puzzle from input file
  * @return ranges
  */
-vector<Range> readFile(const string &fileName) {
-    fstream file(fileName);
+vector<Range> readFile(const string &puzzle) {
+    stringstream puzzle_stream;
+    puzzle_stream << puzzle;
+
     string segment;
     vector<Range> ranges;
-    while (getline(file, segment, ',')) {
+    while (getline(puzzle_stream, segment, ',')) {
         DEBUG_PRINT("%s\n", segment.c_str());
         ranges.emplace_back(segment);
     }
-
-    file.close();
 
     return ranges;
 }
@@ -92,7 +87,7 @@ void solve_part1(const vector<Range> &ranges) {
         for (auto range: ranges) {
             sum += find_matches(range, r);
         }
-        printf("Day 2.1 Final Sum = %lu", sum);
+        printf("Day 2.1 Final Sum = %lu\n", sum);
     } catch (const std::regex_error &e) {
         DEBUG_PRINT("%s\n", e.what());
     }
@@ -112,16 +107,23 @@ void solve_part2(const vector<Range> &ranges) {
         for (auto range: ranges) {
             sum += find_matches(range, r);
         }
-        printf("Day 2.2 Final Sum = %lu", sum);
+        printf("Day 2.2 Final Sum = %lu\n", sum);
+
     } catch (const std::regex_error &e) {
         DEBUG_PRINT("%s\n", e.what());
     }
 }
 
 int main() {
-    const auto ranges = readFile("../input/day2/input.txt");
+    const auto lines = readFile(2);
 
+    //puzzle input contains single line for this day
+    const auto ranges = readFile(lines[0]);
+
+    printf("Solving part 1...\n");
     solve_part1(ranges);
+
+    printf("Solving part 2...\n");
     solve_part2(ranges);
 
     return 0;
