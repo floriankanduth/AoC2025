@@ -10,8 +10,6 @@
 #include <vector>
 #include "common.h"
 
-using namespace std;
-
 /**
  * Specifies search ranges from-to (incl.)
  */
@@ -37,7 +35,7 @@ public:
  * @param puzzle from input file
  * @return ranges
  */
-vector<Range> readFile(const string &puzzle) {
+vector<Range> loadPuzzle(const string &puzzle) {
     stringstream puzzle_stream;
     puzzle_stream << puzzle;
 
@@ -108,17 +106,16 @@ void solve_part2(const vector<Range> &ranges) {
             sum += find_matches(range, r);
         }
         printf("Day 2.2 Final Sum = %lu\n", sum);
-
     } catch (const std::regex_error &e) {
         DEBUG_PRINT("%s\n", e.what());
     }
 }
 
 int main() {
-    const auto lines = readFile(2);
+    const auto lines = loadPuzzle(2);
 
     //puzzle input contains single line for this day
-    const auto ranges = readFile(lines[0]);
+    const auto ranges = loadPuzzle(lines[0]);
 
     printf("Solving part 1...\n");
     solve_part1(ranges);

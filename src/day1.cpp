@@ -9,8 +9,6 @@
 #include <cassert>
 #include "common.h"
 
-using namespace std;
-
 
 /**
  *
@@ -32,7 +30,7 @@ int get_dir(const string &line) {
 }
 
 int main(int argc, char **argv) {
-    const auto lines = readFile(1);
+    const auto lines = loadPuzzle(1);
 
     int position = 50;
     int count = 0;

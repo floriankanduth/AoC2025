@@ -2,6 +2,9 @@
 #define AOC_COMMON_H
 #include <string>
 #include <vector>
+
+using namespace std;
+
 //#define DEBUG
 
 #ifdef DEBUG
@@ -11,6 +14,6 @@
 #endif
 
 
-std::vector<std::string> readFile(int day);
-
+std::vector<std::string> loadPuzzle(int day);
+vector<string> loadExample(int day);
 #endif //AOC_COMMON_H
