@@ -17,7 +17,6 @@ void printPapers(const vector<string> &papers) {
         cout << line << endl;
     }
     cout << endl;
-
 }
 
 /**
@@ -34,21 +33,21 @@ int countAdjacentPapers(const int x, const int y, const vector<string> &papers) 
     const auto y_max = papers.size();
     assert(papers.at(x).at(y) == paper);
 
-    for (int x_ = x - 1; x_ <= x + 1; ++x_) {
+    for (int x_adj = x - 1; x_adj <= x + 1; ++x_adj) {
         //skip oob
-        if (x_ < 0 || x_ >= x_max) {
+        if (x_adj < 0 || x_adj >= x_max) {
             continue;
         }
 
-        for (int y_ = y - 1; y_ <= y + 1; ++y_) {
+        for (int y_adj = y - 1; y_adj <= y + 1; ++y_adj) {
             //skip oob and current paper
-            if (y_ < 0 ||
-                y_ >= y_max ||
-                (x_ == x && y_ == y)) {
+            if (y_adj < 0 ||
+                y_adj >= y_max ||
+                (x_adj == x && y_adj == y)) {
                 continue;
             }
 
-            if (papers.at(x_).at(y_) == paper) {
+            if (papers.at(x_adj).at(y_adj) == paper) {
                 count++;
             }
         }
@@ -99,6 +98,8 @@ int solve_part2(const vector<string> &papers) {
 
     const auto x_max = papers.at(0).size();
     const auto y_max = papers.size();
+
+    // remove rolls until nothing changes
     while (removed_papers != removed_papers_prev) {
         removed_papers_prev = removed_papers;
 
