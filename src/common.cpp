@@ -44,20 +44,3 @@ vector<string> loadExample(int day) {
     file.close();
     return lines;
 }
-
-void printExample(int day) {
-    stringstream filename;
-    string line;
-    vector<string> lines;
-
-    filename << "../input/day" << day << "/example.txt";
-    fstream file(filename.str());
-    assert(file.is_open());
-
-
-    while (getline(file, line)) {
-        cout << line << endl;
-    }
-
-    file.close();
-}

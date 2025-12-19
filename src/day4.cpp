@@ -80,5 +80,5 @@ int main(int argc, char *argv[]) {
     auto count = solve_part1(puzzle);
 
     cout << "Solution: " << count << endl;
-    return count;
+    return 0;
 }
