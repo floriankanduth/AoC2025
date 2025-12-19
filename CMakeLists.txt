@@ -10,3 +10,12 @@ include_directories(${CMAKE_SOURCE_DIR}/inc)
 file(COPY ${CMAKE_SOURCE_DIR}/input DESTINATION ${CMAKE_BINARY_DIR})
 
 add_subdirectory(src)
+
+enable_testing()
+file(GLOB DAY_FILES CONFIGURE_DEPENDS "${CMAKE_BINARY_DIR}/src/day*")
+foreach(DAY_FILE ${DAY_FILES})
+    add_test(
+            NAME ${DAY_FILE}_runs
+            COMMAND ${DAY_FILE}
+    )
+endforeach()

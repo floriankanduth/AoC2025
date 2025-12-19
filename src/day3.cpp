@@ -23,11 +23,9 @@ unsigned int find_max_joltage(const string &line) {
     for (int i = 9; i >= 0; --i) {
         //search only until 2nd last digit. We need space for one more.
         const size_t upper_idx = line.substr(0, line.size() - 1).find(to_string(i));
-
-        //This is our 10s digit.
-        joltage_str[0] = line[upper_idx];
-
         if (upper_idx != string::npos) {
+            //This is our 10s digit.
+            joltage_str[0] = line[upper_idx];
             //find the biggest digit after the first.
             for (int j = 9; j >= 0; --j) {
                 const size_t lower_idx = line.find(to_string(j), upper_idx + 1);
