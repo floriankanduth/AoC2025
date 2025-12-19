@@ -14,7 +14,7 @@ add_subdirectory(src)
 enable_testing()
 set(DAY_TARGETS)
 
-foreach (day RANGE 1 25)
+foreach (day RANGE 1 12) # only 12 days of AoC this year :(
     set(tgt "day${day}")
     set(src "${CMAKE_SOURCE_DIR}/src/${tgt}.cpp")
     if(EXISTS "${src}")
