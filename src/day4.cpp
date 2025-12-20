@@ -7,12 +7,12 @@
 #include <iostream>
 #include <ostream>
 #include "common.h"
-using namespace std;
+#include "day4.h"
 
 constexpr char paper = '@';
 constexpr char empty = '.';
 
-void printPapers(const vector<string> &papers) {
+static void printPapers(const vector<string> &papers) {
     for (const auto &line: papers) {
         cout << line << endl;
     }
@@ -27,7 +27,7 @@ void printPapers(const vector<string> &papers) {
  * @param papers array of papers
  * @return number of paper rolls adjacent to roll
  */
-int countAdjacentPapers(const int x, const int y, const vector<string> &papers) {
+static int countAdjacentPapers(const int x, const int y, const vector<string> &papers) {
     int count = 0;
     const auto x_max = papers.at(0).size();
     const auto y_max = papers.size();
@@ -63,7 +63,7 @@ int countAdjacentPapers(const int x, const int y, const vector<string> &papers) 
  * @param papers array of paper rolls
  * @return amount of paper rolls that can be removed
  */
-int solve_part1(const vector<string> &papers) {
+static int solve_part1(const vector<string> &papers) {
     int count = 0;
     const auto x_max = papers.at(0).size();
     const auto y_max = papers.size();
@@ -89,7 +89,7 @@ int solve_part1(const vector<string> &papers) {
  * @param papers array of papers
  * @return total number of removed papers
  */
-int solve_part2(const vector<string> &papers) {
+static int solve_part2(const vector<string> &papers) {
     printPapers(papers);
     auto papers_cpy = papers;
     auto papers_prev = papers;
@@ -120,7 +120,7 @@ int solve_part2(const vector<string> &papers) {
     return removed_papers;
 }
 
-int main(int argc, char *argv[]) {
+int run_day4(const std::vector<std::string>& input) {
     const auto example = loadExample(4);
     const auto puzzle = loadPuzzle(4);
     const auto count = solve_part2(puzzle);

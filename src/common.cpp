@@ -14,7 +14,7 @@ vector<string> loadPuzzle(int day) {
     string line;
     vector<string> lines;
 
-    filename << "../input/day" << day << "/input.txt";
+    filename << "input/day" << day << "/input.txt";
     fstream file(filename.str());
     assert(file.is_open());
 
@@ -32,7 +32,7 @@ vector<string> loadExample(int day) {
     string line;
     vector<string> lines;
 
-    filename << "../input/day" << day << "/example.txt";
+    filename << "input/day" << day << "/example.txt";
     fstream file(filename.str());
     assert(file.is_open());
 

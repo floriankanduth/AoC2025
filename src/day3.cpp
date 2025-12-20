@@ -8,6 +8,7 @@
 #include <sstream>
 
 #include "common.h"
+#include "day3.h"
 /**
  * Find the maximum Joltage [sic.] of the battery bank.
  * Search for the biggest value in the bank as 10s digit. Afterward, search for the biggest value after that.
@@ -15,7 +16,7 @@
  * @param line input line
  * @return joltage
  */
-unsigned int find_max_joltage(const string &line) {
+static unsigned int find_max_joltage(const string &line) {
     unsigned int max_joltage;
     char joltage_str[3] = {'\0'};
 
@@ -57,7 +58,7 @@ unsigned int find_max_joltage(const string &line) {
  *
  * @return sum of all Joltages
  */
-unsigned int solve_part1(const vector<string> &puzzle) {
+static unsigned int solve_part1(const vector<string> &puzzle) {
     unsigned int sum = 0;
     for (const auto &line: puzzle) {
         sum += find_max_joltage(line);
@@ -65,10 +66,9 @@ unsigned int solve_part1(const vector<string> &puzzle) {
     return sum;
 }
 
-int main(int argc, char **argv) {
-    const auto example = loadExample(3);
-    const auto puzzle = loadPuzzle(3);
-
-    const unsigned int sum = solve_part1(puzzle);
+int run_day3(const std::vector<std::string> &input) {
+    const unsigned int sum = solve_part1(input);
     cout << "Total Joltage: " << sum << endl;
+
+    return static_cast<int>(sum);
 }

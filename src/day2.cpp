@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 #include "common.h"
-
+#include "day2.h"
 /**
  * Specifies search ranges from-to (incl.)
  */
@@ -35,7 +35,7 @@ public:
  * @param puzzle from input file
  * @return ranges
  */
-vector<Range> loadPuzzle(const string &puzzle) {
+static vector<Range> loadPuzzle(const string &puzzle) {
     stringstream puzzle_stream;
     puzzle_stream << puzzle;
 
@@ -55,7 +55,7 @@ vector<Range> loadPuzzle(const string &puzzle) {
  * @param r regex to match
  * @return sum of matched numbers
  */
-auto find_matches(const Range &range, const regex &r) {
+static auto find_matches(const Range &range, const regex &r) {
     unsigned long sum = 0;
 
     smatch m;
@@ -77,7 +77,7 @@ auto find_matches(const Range &range, const regex &r) {
  * We only need to check numbers specified by the given range.
  * @param ranges range to search for matches
  */
-void solve_part1(const vector<Range> &ranges) {
+static void solve_part1(const vector<Range> &ranges) {
     unsigned long sum = 0;
     try {
         const auto r = regex(R"(^(\d+)(\1)$)");
@@ -97,7 +97,7 @@ void solve_part1(const vector<Range> &ranges) {
  * We only need to check numbers specified by the given range.
  * @param ranges range to search for matches
  */
-void solve_part2(const vector<Range> &ranges) {
+static void solve_part2(const vector<Range> &ranges) {
     unsigned long sum = 0;
     try {
         const auto r = regex(R"(^(\d+)(\1)+$)");
@@ -111,7 +111,7 @@ void solve_part2(const vector<Range> &ranges) {
     }
 }
 
-int main() {
+int run_day2(const std::vector<std::string>&) {
     const auto lines = loadPuzzle(2);
 
     //puzzle input contains single line for this day

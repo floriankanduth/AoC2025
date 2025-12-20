@@ -4,29 +4,10 @@
 
 #include <iostream>
 #include <ostream>
+#include <vector>
 
 #include "common.h"
-
-class FreshRange {
-
-public:
-    unsigned long from;
-    unsigned long to;
-
-    FreshRange(const int from, const int to) : from(from), to(to) {
-    }
-
-    explicit FreshRange(const string &line) {
-        const auto sep = line.find('-');
-
-        from = stoul(line.substr(0, sep));
-        to = stoul(line.substr(sep + 1));
-    }
-
-    bool contains(const unsigned long &number) const {
-        return from <= number && number <= to;
-    }
-};
+#include "FreshRange.h"
 
 /**
  * Looks through fresh ranges to see if ingredients are fresh.
@@ -35,7 +16,7 @@ public:
  * @param ranges ranges of fresh ingredients
  * @return number of fresh ingredients
  */
-int solve_part1(const vector<unsigned long> &numbers, const vector<FreshRange> &ranges) {
+int solve_part1(const std::vector<unsigned long> &numbers, const std::vector<FreshRange> &ranges) {
     int count = 0;
 
     for (const unsigned long &number: numbers) {
@@ -56,7 +37,7 @@ int solve_part1(const vector<unsigned long> &numbers, const vector<FreshRange> &
  * @param numbers pointer to number vector
  * @param ranges pointer to ranges vector
  */
-void parse_input(const vector<string> &lines, vector<unsigned long> &numbers, vector<FreshRange> &ranges) {
+void parse_input(const std::vector<string> &lines, std::vector<unsigned long> &numbers, std::vector<FreshRange> &ranges) {
     int i;
 
     for (i = 0; i < lines.size() && !lines[i].empty(); i++) {
@@ -65,7 +46,7 @@ void parse_input(const vector<string> &lines, vector<unsigned long> &numbers, ve
 
     //i++ as initializer looks cursed, but we need to consume the empty line
     for (i++; i < lines.size() && !lines[i].empty(); i++) {
-        numbers.emplace_back(stoul(lines[i]));
+        numbers.emplace_back(std::stoul(lines[i]));
     }
 }
 
@@ -76,14 +57,11 @@ void parse_input(const vector<string> &lines, vector<unsigned long> &numbers, ve
  * Find the number of fresh ingredients.
  * @return 0
  */
-int main() {
-    const auto example = loadExample(5);
-    const auto puzzle = loadPuzzle(5);
+int run_day5(const std::vector<std::string>& input) {
+    std::vector<FreshRange> ranges;
+    std::vector<unsigned long> numbers;
 
-    vector<FreshRange> ranges;
-    vector<unsigned long> numbers;
-
-    parse_input(puzzle, numbers, ranges);
+    parse_input(input, numbers, ranges);
     const int count = solve_part1(numbers, ranges);
 
 

@@ -8,14 +8,14 @@
 #include <string>
 #include <cassert>
 #include "common.h"
-
+#include "day1.h"
 
 /**
  *
  * @param line line from puzzle input
  * @return distance to turn the dial
  */
-int get_distance(const string &line) {
+static int get_distance(const string &line) {
     const string distance_str = line.substr(1, line.length() - 1);
     return stoi(distance_str);
 }
@@ -25,17 +25,15 @@ int get_distance(const string &line) {
  * @param line line from puzzle input
  * @return direction factor as +-1
  */
-int get_dir(const string &line) {
+static int get_dir(const string &line) {
     return line[0] == 'L' ? -1 : 1;
 }
 
-int main(int argc, char **argv) {
-    const auto lines = loadPuzzle(1);
-
+int run_day1(const std::vector<std::string>& input) {
     int position = 50;
     int count = 0;
 
-    for (const auto &line: lines) {
+    for (const auto &line: input) {
         const int dir = get_dir(line);
         const int dist = get_distance(line);
 
