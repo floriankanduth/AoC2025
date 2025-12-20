@@ -1,6 +1,9 @@
 #include "../inc/FreshRange.h"
 
+#include <cassert>
+
 FreshRange::FreshRange(const int from, const int to) : from(from), to(to) {
+    assert(from <= to);
 }
 
 FreshRange::FreshRange(const std::string &line) {
@@ -19,8 +22,10 @@ bool FreshRange::overlaps(const FreshRange &other) const {
 }
 
 FreshRange FreshRange::operator+=(const FreshRange &other) {
-    from += other.from;
-    to += other.to;
+    assert(this->overlaps(other));
+
+    from = std::min(from, other.from);
+    to = std::max(to, other.to);
     return *this;
 }
 
@@ -35,14 +40,9 @@ bool FreshRange::operator<(const FreshRange &other) const {
 }
 
 bool FreshRange::operator>(const FreshRange &other) const {
-    return from > other.from;
+    return other < *this;
 }
 
-bool FreshRange::operator==(const FreshRange &other) const {
-    return from == other.from && to == other.to;
+unsigned long FreshRange::freshIDs() const {
+    return (to - from) + 1;
 }
-
-bool FreshRange::operator!=(const FreshRange &other) const {
-    return !(*this == other);
-}
-

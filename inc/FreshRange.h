@@ -28,9 +28,14 @@ public:
 
     bool operator>(const FreshRange &other) const;
 
-    bool operator==(const FreshRange &other) const;
+    /**
+     * Returns the number of fresh IDs with range.
+     * E.g. in range(3, 5) -> 3, 4, 5 = 3.
+     *
+     * @return number fresh IDs
+     */
+    unsigned long freshIDs() const;
 
-    bool operator!=(const FreshRange &other) const;
 };
 
 
