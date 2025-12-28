@@ -5,21 +5,33 @@
 
 #include "common.h"
 #include "day1.h"
+#include "day10.h"
+#include "day11.h"
+#include "day12.h"
 #include "day2.h"
 #include "day3.h"
 #include "day4.h"
 #include "day5.h"
 #include "day6.h"
+#include "day7.h"
+#include "day8.h"
+#include "day9.h"
 
 typedef int (*DayFn)(const std::vector<std::string>&);
 
-constexpr std::array<DayFn, 6> days = {
+constexpr std::array<DayFn, 12> days = {
     run_day1,
     run_day2,
     run_day3,
     run_day4,
     run_day5,
-    run_day6
+    run_day6,
+    run_day7,
+    run_day8,
+    run_day9,
+    run_day10,
+    run_day11,
+    run_day12
 };
 const  std::string usage_str = "Usage: aoc <day>\n";
 

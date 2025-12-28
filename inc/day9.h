@@ -3,5 +3,5 @@
 #include <string>
 #include <vector>
 
-int run_day6(const std::vector<std::string> &);
+int run_day9(const std::vector<std::string> &);
 #endif //AOC_DAY9_H
