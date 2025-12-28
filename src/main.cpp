@@ -17,7 +17,7 @@
 #include "day8.h"
 #include "day9.h"
 
-typedef int (*DayFn)(const std::vector<std::string>&);
+typedef int (*DayFn)(const std::vector<std::string> &);
 
 constexpr std::array<DayFn, 12> days = {
     run_day1,
@@ -33,7 +33,7 @@ constexpr std::array<DayFn, 12> days = {
     run_day11,
     run_day12
 };
-const  std::string usage_str = "Usage: aoc <day>\n";
+const std::string usage_str = "Usage: aoc <day>\n";
 
 int main(int argc, char *argv[]) {
     int day = 0;
@@ -63,8 +63,11 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
-    auto input = loadPuzzle(day);
-    days[day-1](input);
+    auto input = loadExample(day);
+    days[day - 1](input);
+
+    input = loadPuzzle(day);
+    days[day - 1](input);
 
     return 0;
 }
