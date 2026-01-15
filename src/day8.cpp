@@ -4,9 +4,9 @@
 
 #include "day8.h"
 #include <cmath>
+#include <set>
 #include <string>
 #include <vector>
-#include <bits/valarray_after.h>
 
 struct Coord {
     int x, y, z;
@@ -17,7 +17,7 @@ struct Coord {
  * @param x integer to square
  * @return x^2
  */
-constexpr float sqri(const int x) { return x * x; }
+constexpr float sqri(const int x) { return static_cast<float>(x * x); }
 
 /**
  * Calculate the Euclidian distance from point a to point b.
@@ -29,7 +29,10 @@ constexpr float dist(const Coord &a, const Coord &b) {
     return std::sqrt(sqri(a.x - b.x) + sqri(a.y - b.y) + sqri(a.z - b.z));
 }
 
-
 int run_day8(const std::vector<std::string> &) {
+    std::multiset<float> distances;
+    std::vector<std::vector<int> > circuits;
+
+
     return 0;
 }
